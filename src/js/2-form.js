@@ -11,7 +11,7 @@ const localStorageKey = "feedback-form-state";
 let savedData;
 
 try {
-    savedData = JSON.parse(localStorage.getItem(localStorageKey));
+    savedData = JSON.parse(localStorage.getItem(localStorageKey)) || {};
 } catch {
     savedData = {};
 }
@@ -51,11 +51,11 @@ function onFormSubmit(e) {
 
     if (emailInput.value === "" || messageInput.value === "") {
         alert(`Fill please all fields`);
-    } else {
-        console.log(formData)
     }
-    localStorage.removeItem(localStorageKey)
+        console.log(formData)
+        localStorage.removeItem(localStorageKey)
     formData.email = "";
     formData.message = "";
     form.reset();
+    
 }
