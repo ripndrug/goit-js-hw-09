@@ -8,10 +8,18 @@ const emailInput = form.elements.email;
 const messageInput = form.elements.message;
 const localStorageKey = "feedback-form-state";
 
-const savedData = JSON.parse(localStorage.getItem(localStorageKey));
+let savedData;
 
-emailInput.value = savedData.email ?? "";
-messageInput.value = savedData.message ?? "";
+try {
+    savedData = JSON.parse(localStorage.getItem(localStorageKey));
+} catch {
+    savedData = {};
+}
+
+console.log(savedData)
+
+emailInput.value = savedData.email || "";
+messageInput.value = savedData.message || "";
 // messageInput.value = localStorage.getItem(localStorageKey) ?? "";
 
 // localStorage.setItem(localStorageKey, JSON.stringify(formData));
